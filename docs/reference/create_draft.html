@@ -158,7 +158,7 @@
     </tr>
     <tr>
       <th>show_message</th>
-      <td></td>
+      <td><p>if TRUE, show the message for editing after creation</p></td>
     </tr>
     <tr>
       <th>html_body</th>
@@ -179,6 +179,9 @@
 
 <span class='no'>com</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='connect_outlook.html'>connect_outlook</a></span>()
 <span class='no'>msg</span> <span class='kw'>&lt;-</span> <span class='fu'>create_draft</span>(<span class='no'>com</span>, <span class='kw'>addr_to</span> <span class='kw'>=</span> <span class='st'>"foo@bar.com"</span>)
+
+<span class='co'># Attachments</span>
+<span class='no'>msg</span> <span class='kw'>&lt;-</span> <span class='fu'>create_draft</span>(<span class='no'>con</span>, <span class='kw'>attachments</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'foo.txt'</span>, <span class='st'>'foo2.txt'</span>))
 
 }</div></pre>
   </div>

@@ -56,3 +56,11 @@ msg$Display()
 # Close and save to drafts
 close_draft(msg, save = TRUE)
 ```
+
+### Attachments
+
+Multiple attachments can be supplied as a vector of paths.
+
+``` r
+msg <- create_draft(con, attachments = c('foo.txt', 'foo2.txt'))
+```

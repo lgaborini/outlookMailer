@@ -16,18 +16,22 @@
 #' @param body plain text contents of the message
 #' @param attachments path to file(s) to attach
 #' @param use_signature if TRUE, get the signature (if automatically added) from the blank message, than put it back after the message is created.
-#' @param show_message
+#' @param show_message if TRUE, show the message for editing after creation
 #'
 #' @return a COM object that binds to an e-mail window ('Outlook.MailItem')
 #' @export
 #' @import RDCOMClient
 #' @importFrom fs file_exists
 #' @importFrom glue glue
+#' @importFrom rlang abort
 #' @examples
 #' \dontrun{
 #'
 #' com <- connect_outlook()
 #' msg <- create_draft(com, addr_to = "foo@bar.com")
+#'
+#' # Attachments
+#' msg <- create_draft(con, attachments = c('foo.txt', 'foo2.txt'))
 #'
 #' }
 create_draft <- function(ol_app,
@@ -92,7 +96,7 @@ create_draft <- function(ol_app,
       stopifnot(is.character(attachments))
       for (f in attachments) {
          if (!fs::file_exists(f)) {
-            stopifnot(glue::glue('attachments: file {f} does not exist.'))
+            rlang::abort(glue::glue('attachments: file {f} does not exist.'), class = 'attachment_not_found')
          }
          ol_mail[['Attachments']]$Add(f)
       }

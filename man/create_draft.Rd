@@ -32,7 +32,7 @@ create_draft(
 
 \item{use_signature}{if TRUE, get the signature (if automatically added) from the blank message, than put it back after the message is created.}
 
-\item{show_message}{}
+\item{show_message}{if TRUE, show the message for editing after creation}
 
 \item{html_body}{HTML contents of the message. Takes precedence over body}
 
@@ -49,6 +49,9 @@ Connect to Outlook and create an e-mail message.
 
 com <- connect_outlook()
 msg <- create_draft(com, addr_to = "foo@bar.com")
+
+# Attachments
+msg <- create_draft(con, attachments = c('foo.txt', 'foo2.txt'))
 
 }
 }
