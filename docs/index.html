@@ -67,16 +67,16 @@
 <a href="#outlookmailer" class="anchor"></a>outlookMailer</h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The goal of outlookMailer is to create an R interface between Microsoft Outlook and R, to compose messages from R using Outlook’s native window.</p>
+<p>The goal of outlookMailer is to create an R interface between Microsoft Outlook and R, to compose messages from R using Outlook’s native window.<br>
+It works only on Windows.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <div id="requirements" class="section level3">
 <h3 class="hasAnchor">
 <a href="#requirements" class="anchor"></a>Requirements</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">'omegahat/RDCOMClient'</span>)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="co">#&gt; Skipping install of 'RDCOMClient' from a github remote, the SHA1 (6e1e5806) has not changed since last install.</span></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="co">#&gt;   Use `force = TRUE` to force installation</span></a></code></pre></div>
+<p>The package requires access to Windows DCOM objects, provided by <a href="http://www.omegahat.net/RDCOMClient/">RDCOMClient</a>. It is no longer on CRAN, but can be installed from <a href="https://github.com/omegahat/RDCOMClient">GitHub</a>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">'omegahat/RDCOMClient'</span>)</a></code></pre></div>
 </div>
 <div id="the-package" class="section level3">
 <h3 class="hasAnchor">
@@ -101,14 +101,17 @@
 <a class="sourceLine" id="cb3-10" title="10">                    <span class="dt">use_signature =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb3-11" title="11">                    <span class="dt">show_message =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb3-12" title="12"></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="co"># Show the message</span></a>
-<a class="sourceLine" id="cb3-14" title="14">msg<span class="op">$</span><span class="kw">Display</span>()</a>
+<a class="sourceLine" id="cb3-13" title="13"><span class="co"># Optionally modify properties</span></a>
+<a class="sourceLine" id="cb3-14" title="14">msg[[<span class="st">'Subject'</span>]] &lt;-<span class="st"> 'Subject of the message'</span></a>
 <a class="sourceLine" id="cb3-15" title="15"></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="co"># Send the message (caution!)</span></a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="co"># msg$Send()</span></a>
+<a class="sourceLine" id="cb3-16" title="16"><span class="co"># Show the message</span></a>
+<a class="sourceLine" id="cb3-17" title="17">msg<span class="op">$</span><span class="kw">Display</span>()</a>
 <a class="sourceLine" id="cb3-18" title="18"></a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="co"># Close and save to drafts</span></a>
-<a class="sourceLine" id="cb3-20" title="20"><span class="kw"><a href="reference/close_draft.html">close_draft</a></span>(msg, <span class="dt">save =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb3-19" title="19"><span class="co"># Send the message (caution!)</span></a>
+<a class="sourceLine" id="cb3-20" title="20"><span class="co"># msg$Send()</span></a>
+<a class="sourceLine" id="cb3-21" title="21"></a>
+<a class="sourceLine" id="cb3-22" title="22"><span class="co"># Close and save to drafts</span></a>
+<a class="sourceLine" id="cb3-23" title="23"><span class="kw"><a href="reference/close_draft.html">close_draft</a></span>(msg, <span class="dt">save =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <div id="attachments" class="section level3">
 <h3 class="hasAnchor">
 <a href="#attachments" class="anchor"></a>Attachments</h3>

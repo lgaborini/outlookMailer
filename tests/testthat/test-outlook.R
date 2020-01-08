@@ -5,8 +5,6 @@
 context('Outlook interface')
 
 
-
-
 test_that("Outlook COM is created", {
    ol_app <- expect_silent(connect_outlook())
 

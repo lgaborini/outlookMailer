@@ -8,16 +8,21 @@
 <!-- badges: end -->
 
 The goal of outlookMailer is to create an R interface between Microsoft
-Outlook and R, to compose messages from R using Outlook’s native window.
+Outlook and R, to compose messages from R using Outlook’s native
+window.  
+It works only on Windows.
 
 ## Installation
 
 ### Requirements
 
+The package requires access to Windows DCOM objects, provided by
+[RDCOMClient](http://www.omegahat.net/RDCOMClient/). It is no longer on
+CRAN, but can be installed from
+[GitHub](https://github.com/omegahat/RDCOMClient):
+
 ``` r
 remotes::install_github('omegahat/RDCOMClient')
-#> Skipping install of 'RDCOMClient' from a github remote, the SHA1 (6e1e5806) has not changed since last install.
-#>   Use `force = TRUE` to force installation
 ```
 
 ### The package

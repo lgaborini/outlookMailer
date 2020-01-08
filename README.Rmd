@@ -18,13 +18,17 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of outlookMailer is to create an R interface between Microsoft Outlook and R, to compose messages from R using Outlook's native window.
+The goal of outlookMailer is to create an R interface between Microsoft Outlook and R, to compose messages from R using Outlook's native window.  
+It works only on Windows.
 
 ## Installation
 
 ### Requirements
 
-```{r}
+The package requires access to Windows DCOM objects, provided by [RDCOMClient](http://www.omegahat.net/RDCOMClient/).
+It is no longer on CRAN, but can be installed from [GitHub](https://github.com/omegahat/RDCOMClient):
+
+```{r, eval=FALSE}
 remotes::install_github('omegahat/RDCOMClient')
 ```
 
