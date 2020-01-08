@@ -1,6 +1,6 @@
 Package: outlookMailer
 Title: Interact with Microsoft Outlook from R
-Version: 0.0.1
+Version: 0.1
 Authors@R: 
     person(given = "Lorenzo",
            family = "Gaborini",
