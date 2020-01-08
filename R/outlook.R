@@ -9,7 +9,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' com <- connect_outlook()
+#' }
 connect_outlook <- function(wait_seconds = 3) {
 
    if (!require('RDCOMClient', quietly = TRUE)) {
@@ -49,9 +51,9 @@ connect_outlook <- function(wait_seconds = 3) {
 #' @return nothing
 #' @export
 #' @examples
-#'
+#' \dontrun{
 #' disconnect_outlook(com)
-#'
+#' }
 disconnect_outlook <- function(com) {
    if (is_outlook(com)) {
       com$Quit()

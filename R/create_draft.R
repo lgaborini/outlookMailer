@@ -24,10 +24,12 @@
 #' @importFrom fs file_exists
 #' @importFrom glue glue
 #' @examples
+#' \dontrun{
 #'
 #' com <- connect_outlook()
-#' msg <- create_draft(com, addr_to = 'foo@bar.com')
+#' msg <- create_draft(com, addr_to = "foo@bar.com")
 #'
+#' }
 create_draft <- function(ol_app,
                          addr_from = NULL,
                          addr_to = NULL,

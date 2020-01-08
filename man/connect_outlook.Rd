@@ -13,5 +13,7 @@ An object of class `COMIDispatch.` that represents an Outlook application instan
 Create a COM Outlook.Application instance.
 }
 \examples{
+\dontrun{
 com <- connect_outlook()
+}
 }

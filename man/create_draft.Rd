@@ -45,8 +45,10 @@ a COM object that binds to an e-mail window ('Outlook.MailItem')
 Connect to Outlook and create an e-mail message.
 }
 \examples{
+\dontrun{
 
 com <- connect_outlook()
-msg <- create_draft(com, addr_to = 'foo@bar.com')
+msg <- create_draft(com, addr_to = "foo@bar.com")
 
+}
 }

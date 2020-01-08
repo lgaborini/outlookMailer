@@ -16,7 +16,7 @@ nothing
 Close an Outlook COM instance.
 }
 \examples{
-
+\dontrun{
 disconnect_outlook(com)
-
+}
 }

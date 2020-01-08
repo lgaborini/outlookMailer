@@ -52,4 +52,7 @@ msg$Display()
 
 # Send the message (caution!)
 # msg$Send()
+
+# Close and save to drafts
+close_draft(msg, save = TRUE)
 ```
