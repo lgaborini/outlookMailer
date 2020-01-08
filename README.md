@@ -17,8 +17,8 @@ It works only on Windows.
 ### Requirements
 
 The package requires access to Windows DCOM objects, provided by
-[RDCOMClient](http://www.omegahat.net/RDCOMClient/). It is no longer on
-CRAN, but can be installed from
+[RDCOMClient](http://www.omegahat.net/RDCOMClient/).  
+It is no longer on CRAN, but can be installed from
 [GitHub](https://github.com/omegahat/RDCOMClient):
 
 ``` r
@@ -71,4 +71,14 @@ Multiple attachments can be supplied as a vector of paths.
 
 ``` r
 msg <- create_draft(con, attachments = c('foo.txt', 'foo2.txt'))
+```
+
+### Messages saved as files
+
+Messages saved as `.msg` or `.eml` can be opened:
+
+``` r
+con <- connect_outlook()
+
+msg <- open_msg(con, path_msg = 'sample.msg', show_message = TRUE)
 ```

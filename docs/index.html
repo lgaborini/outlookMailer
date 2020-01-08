@@ -75,7 +75,8 @@ It works only on Windows.</p>
 <div id="requirements" class="section level3">
 <h3 class="hasAnchor">
 <a href="#requirements" class="anchor"></a>Requirements</h3>
-<p>The package requires access to Windows DCOM objects, provided by <a href="http://www.omegahat.net/RDCOMClient/">RDCOMClient</a>. It is no longer on CRAN, but can be installed from <a href="https://github.com/omegahat/RDCOMClient">GitHub</a>:</p>
+<p>The package requires access to Windows DCOM objects, provided by <a href="http://www.omegahat.net/RDCOMClient/">RDCOMClient</a>.<br>
+It is no longer on CRAN, but can be installed from <a href="https://github.com/omegahat/RDCOMClient">GitHub</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">'omegahat/RDCOMClient'</span>)</a></code></pre></div>
 </div>
 <div id="the-package" class="section level3">
@@ -117,6 +118,14 @@ It works only on Windows.</p>
 <a href="#attachments" class="anchor"></a>Attachments</h3>
 <p>Multiple attachments can be supplied as a vector of paths.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">msg &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_draft.html">create_draft</a></span>(con, <span class="dt">attachments =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'foo.txt'</span>, <span class="st">'foo2.txt'</span>))</a></code></pre></div>
+</div>
+<div id="messages-saved-as-files" class="section level3">
+<h3 class="hasAnchor">
+<a href="#messages-saved-as-files" class="anchor"></a>Messages saved as files</h3>
+<p>Messages saved as <code>.msg</code> or <code>.eml</code> can be opened:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">con &lt;-<span class="st"> </span><span class="kw"><a href="reference/connect_outlook.html">connect_outlook</a></span>()</a>
+<a class="sourceLine" id="cb5-2" title="2"></a>
+<a class="sourceLine" id="cb5-3" title="3">msg &lt;-<span class="st"> </span><span class="kw"><a href="reference/open_msg.html">open_msg</a></span>(con, <span class="dt">path_msg =</span> <span class="st">'sample.msg'</span>, <span class="dt">show_message =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 </div>
 </div>

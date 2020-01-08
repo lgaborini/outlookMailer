@@ -39,7 +39,7 @@ create_draft(
 \item{body}{plain text contents of the message}
 }
 \value{
-a COM object that binds to an e-mail window ('Outlook.MailItem')
+a COM object that binds to an e-mail window (`'Outlook.MailItem'``)
 }
 \description{
 Connect to Outlook and create an e-mail message.

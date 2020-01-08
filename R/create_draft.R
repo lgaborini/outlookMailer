@@ -18,7 +18,7 @@
 #' @param use_signature if TRUE, get the signature (if automatically added) from the blank message, than put it back after the message is created.
 #' @param show_message if TRUE, show the message for editing after creation
 #'
-#' @return a COM object that binds to an e-mail window ('Outlook.MailItem')
+#' @return a COM object that binds to an e-mail window (`'Outlook.MailItem'``)
 #' @export
 #' @import RDCOMClient
 #' @importFrom fs file_exists
@@ -142,5 +142,55 @@ close_draft <- function(ol_mail, save = FALSE) {
    }
 
    invisible(NULL)
+}
+
+
+
+
+
+
+
+
+#' Open a .msg in the current Outlook session
+#'
+#' @param path_msg a path to a '.msg' or '.eml' file (not checked for format)
+#' @return a COM object that binds to an e-mail window (`'Outlook.MailItem'`)
+#' @export
+#' @inheritParams create_draft
+#' @examples
+#' \dontrun{
+#'
+#' # Path to a sample .msg file
+#' f <- system.file('data/sample.msg', package = 'outlookMailer')
+#'
+#' con <- connect_outlook()
+#' msg <- open_msg(con, path_msg = f, show_message = TRUE)
+#'
+#' }
+open_msg <- function(ol_app, path_msg, show_message = TRUE) {
+
+   stopifnot(is_outlook(ol_app))
+
+   path_msg <- normalizePath(path_msg, mustWork = TRUE)
+
+   ol_sess <- ol_app[['Session']]
+
+   stopifnot(ol_sess %>% has_COM_method('OpenSharedItem'))
+
+   ol_mail <- ol_sess$OpenSharedItem(path_msg)
+
+   stopifnot(is_mail(ol_mail))
+
+   # Show the message
+   if (show_message){
+
+      stopifnot(has_COM_method(ol_mail, 'Display'))
+
+      Sys.sleep(0.5)
+
+      ol_mail$Display()
+   }
+
+   ol_mail
 }
 

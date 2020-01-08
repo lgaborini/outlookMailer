@@ -84,14 +84,34 @@ test_that('Draft message can be created w/ attachments', {
    expect_equal(ol_msg[['Attachments']]$Count(), 1)
 
    expect_silent(close_draft(ol_msg, save = FALSE))
+
+   expect_silent(disconnect_outlook(ol_app))
 })
 
 
 test_that('Attachments must exist', {
-
    f <- 'aaa'
-
    ol_app <- connect_outlook()
    ol_msg <- expect_error(create_draft(ol_app, show_message = FALSE, attachments = f), class = 'attachment_not_found')
 
+   expect_silent(disconnect_outlook(ol_app))
+
 })
+
+
+# Open messages saved as files --------------------------------------------------
+
+test_that('Draft messages can be opened from file.', {
+
+   f <- system.file('data/sample.msg', package = 'outlookMailer', mustWork = TRUE)
+
+   ol_app <- connect_outlook()
+   ol_msg <- open_msg(ol_app, path_msg = f, show_message = FALSE)
+
+   expect_true(is_mail(ol_msg))
+   expect_equal(ol_msg[['Body']], 'This is a sample .msg message.')
+
+   expect_silent(close_draft(ol_msg, save = FALSE))
+   expect_silent(disconnect_outlook(ol_app))
+})
+

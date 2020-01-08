@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • outlookMailer</title>
+<title>Open a .msg in the current Outlook session — open_msg • outlookMailer</title>
 
 
 <!-- jquery -->
@@ -35,7 +35,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Open a .msg in the current Outlook session — open_msg" />
+<meta property="og:description" content="Open a .msg in the current Outlook session" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -54,7 +56,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -99,90 +101,59 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Open a .msg in the current Outlook session</h1>
+    
+    <div class="hidden name"><code>open_msg.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Open a .msg in the current Outlook session</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>open_msg</span>(<span class='no'>ol_app</span>, <span class='no'>path_msg</span>, <span class='kw'>show_message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="close_draft.html">close_draft()</a></code> </p>
-        </td>
-        <td><p>Close an Outlook message window.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="connect_outlook.html">connect_outlook()</a></code> </p>
-        </td>
-        <td><p>Create a COM Outlook.Application instance.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="create_draft.html">create_draft()</a></code> </p>
-        </td>
-        <td><p>Connect to Outlook and create an e-mail message.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="disconnect_outlook.html">disconnect_outlook()</a></code> </p>
-        </td>
-        <td><p>Close an Outlook COM instance.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="has_COM_method.html">has_COM_method()</a></code> </p>
-        </td>
-        <td><p>Check if a COM object has a method</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="has_COM_property.html">has_COM_property()</a></code> </p>
-        </td>
-        <td><p>Check if a COM object has a property (attribute)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="is_mail.html">is_mail()</a></code> </p>
-        </td>
-        <td><p>Check if an object is an Outlook message.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="is_outlook.html">is_outlook()</a></code> </p>
-        </td>
-        <td><p>Check if an object is an Outlook application.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="open_msg.html">open_msg()</a></code> </p>
-        </td>
-        <td><p>Open a .msg in the current Outlook session</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>ol_app</th>
+      <td><p>An object that represents an Outlook application instance (class: class `COMIDispatch.`)</p></td>
+    </tr>
+    <tr>
+      <th>path_msg</th>
+      <td><p>a path to a '.msg' or '.eml' file (not checked for format)</p></td>
+    </tr>
+    <tr>
+      <th>show_message</th>
+      <td><p>if TRUE, show the message for editing after creation</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a COM object that binds to an e-mail window (`'Outlook.MailItem'`)</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+
+<span class='co'># Path to a sample .msg file</span>
+<span class='no'>f</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>'data/sample.msg'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'outlookMailer'</span>)
+
+<span class='no'>con</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='connect_outlook.html'>connect_outlook</a></span>()
+<span class='no'>msg</span> <span class='kw'>&lt;-</span> <span class='fu'>open_msg</span>(<span class='no'>con</span>, <span class='kw'>path_msg</span> <span class='kw'>=</span> <span class='no'>f</span>, <span class='kw'>show_message</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+}</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
