@@ -35,7 +35,7 @@ test_that("Outlook COM is destroyed", {
 
 # Message creation --------------------------------------------------------
 
-test_that('A draft message is created.', {
+test_that('A draft message is created silently.', {
 
    str <- 'Test draft message'
 
@@ -49,7 +49,24 @@ test_that('A draft message is created.', {
 
    expect_equal(stringr::str_trim(ol_msg[['Body']]), str)
 
-   expect_silent(close_draft(ol_msg))
+   expect_silent(close_draft(ol_msg, save = FALSE))
+
+   # disconnect_outlook(com)
+})
+
+
+test_that('A draft message is created with displaying.', {
+
+   str <- 'Test draft message'
+
+   ol_app <- connect_outlook()
+
+   ol_msg <- expect_silent(create_draft(ol_app, body_plain = str, use_signature = FALSE, show_message = TRUE))
+   expect_true(is_mail(ol_msg))
+
+   expect_equal(stringr::str_trim(ol_msg[['Body']]), str)
+
+   expect_silent(close_draft(ol_msg, save = FALSE))
 
    # disconnect_outlook(com)
 })

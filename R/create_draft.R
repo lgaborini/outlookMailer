@@ -121,16 +121,18 @@ create_draft <- function(ol_app,
 #' Close an Outlook message window.
 #'
 #' @param ol_mail a COM object that binds to an e-mail window ('Outlook.MailItem')
-#' @param save if TRUE, save to drafts, else discard
+#' @param save if TRUE, save to drafts, else discard without confirmation
 #' @export
 close_draft <- function(ol_mail, save = FALSE) {
 
    stopifnot(is_mail(ol_mail))
 
+   # ol_mail$Close(2) # olPromptForSave
+
    if (save) {
-      ol_mail$Close(2) # olSave
+      ol_mail$Close(0) # olSave
    } else {
-      ol_mail$Close(0) # olDiscard
+      ol_mail$Close(1) # olDiscard
    }
 
    invisible(NULL)
