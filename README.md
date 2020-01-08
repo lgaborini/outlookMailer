@@ -47,6 +47,9 @@ msg <- create_draft(con,
                     use_signature = TRUE,
                     show_message = FALSE)
 
+# Optionally modify properties
+msg[['Subject']] <- 'Subject of the message'
+
 # Show the message
 msg$Display()
 
