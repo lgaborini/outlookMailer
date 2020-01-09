@@ -8,13 +8,14 @@
 #' Connect to Outlook and create an e-mail message.
 #'
 #' @param ol_app An object that represents an Outlook application instance (class: class `COMIDispatch.`)
+#' @param addr_from optional fields to fill
 #' @param addr_to optional fields to fill
 #' @param addr_cc optional fields to fill
 #' @param subject optional fields to fill
 #' @param html_body HTML contents of the message. Takes precedence over body
 #' @param body plain text contents of the message
 #' @param attachments path to file(s) to attach
-#' @param use_signature if TRUE, get the signature (if automatically added) from the blank message, than put it back after the message is created.
+#' @param use_signature if TRUE, get the HTML signature from the new blank message, than put it back *after the plain text* after the message is created.
 #' @param show_message if TRUE, show the message for editing after creation
 #'
 #' @return a COM object that binds to an e-mail window (`'Outlook.MailItem'``)
@@ -34,6 +35,7 @@
 #'
 #' }
 create_draft <- function(ol_app,
+                         addr_from = NULL,
                          addr_to = NULL,
                          addr_cc = NULL,
                          subject = NULL,
@@ -57,23 +59,20 @@ create_draft <- function(ol_app,
    ol_mail <- ol_app$CreateItem(0)
    stopifnot(is_mail(ol_mail))
 
-   # Grab the signature from the blank message, then paste it back
+   # Grab the signature from the blank message, then paste it back.
    #
    # It works only if the signature is automatically added.
+   # TODO: append this (if HTML) to HTML body
+   #
    if (use_signature) {
       signature <- ol_mail[["HTMLBody"]]
    }
-#
-#    addr_to <- 'test@test.com'
-#    addr_cc <- ''
-#    subject <- 'Fake email'
-#    body <- 'Plain text.'
 
    ## configure  email parameter
-   # if (!is.null(addr_from)) ol_mail[["From"]]<- addr_from
-   if (!is.null(addr_to)) ol_mail[["To"]]<- addr_to
-   if (!is.null(addr_cc)) ol_mail[["CC"]] <- addr_cc
-   if (!is.null(subject)) ol_mail[["Subject"]] <- subject
+   if (!is.null(addr_from)) { ol_mail[["Sender"]]<- addr_from }
+   if (!is.null(addr_to)) { ol_mail[["To"]]<- addr_to }
+   if (!is.null(addr_cc)) { ol_mail[["CC"]] <- addr_cc }
+   if (!is.null(subject)) { ol_mail[["Subject"]] <- subject }
 
    if (!is.null(body_html)) {
       ol_mail[["HTMLBody"]] <- body_plain
@@ -102,8 +101,8 @@ create_draft <- function(ol_app,
 
    # Paste back the signature
    if (use_signature) {
-      html_body_final <- ol_mail[["HTMLBody"]]
-      ol_mail[["HTMLBody"]] <- paste0(html_body_final, '<p>', signature, '</p>')
+      plain_body_final <- ol_mail[["Body"]]
+      ol_mail[["HTMLBody"]] <- paste0(plain_body_final, '<p>', signature, '</p>')
    }
 
    # Show the message
