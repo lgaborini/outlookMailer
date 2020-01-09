@@ -49,7 +49,7 @@ test_that('A draft message is created, silently.', {
 
    expect_silent(close_draft(ol_msg, save = FALSE))
 
-   # disconnect_outlook(com)
+   disconnect_outlook(ol_app)
 })
 
 
@@ -66,7 +66,7 @@ test_that('A draft message is created, displaying.', {
 
    expect_silent(close_draft(ol_msg, save = FALSE))
 
-   # disconnect_outlook(com)
+   disconnect_outlook(ol_app)
 })
 
 

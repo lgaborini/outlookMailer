@@ -118,6 +118,9 @@ is_mail <- function(x) {
 
    if (!is_COM(x)) return(FALSE)
    if (!has_COM_property(x, 'Class')) return(FALSE)
+   if (!has_COM_property(x, 'To')) return(FALSE)
+   if (!has_COM_property(x, 'CC')) return(FALSE)
+   if (!has_COM_property(x, 'Subject')) return(FALSE)
    if (!has_COM_method(x, 'Display')) return(FALSE)
 
    ret <- (x[['Class']] == 43)           # olMailItem

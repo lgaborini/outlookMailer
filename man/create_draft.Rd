@@ -6,7 +6,6 @@
 \usage{
 create_draft(
   ol_app,
-  addr_from = NULL,
   addr_to = NULL,
   addr_cc = NULL,
   subject = NULL,
@@ -19,8 +18,6 @@ create_draft(
 }
 \arguments{
 \item{ol_app}{An object that represents an Outlook application instance (class: class `COMIDispatch.`)}
-
-\item{addr_from}{optional fields to fill}
 
 \item{addr_to}{optional fields to fill}
 

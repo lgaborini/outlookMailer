@@ -8,7 +8,6 @@
 #' Connect to Outlook and create an e-mail message.
 #'
 #' @param ol_app An object that represents an Outlook application instance (class: class `COMIDispatch.`)
-#' @param addr_from optional fields to fill
 #' @param addr_to optional fields to fill
 #' @param addr_cc optional fields to fill
 #' @param subject optional fields to fill
@@ -35,7 +34,6 @@
 #'
 #' }
 create_draft <- function(ol_app,
-                         addr_from = NULL,
                          addr_to = NULL,
                          addr_cc = NULL,
                          subject = NULL,
@@ -72,10 +70,10 @@ create_draft <- function(ol_app,
 #    body <- 'Plain text.'
 
    ## configure  email parameter
-   if (!is.null(addr_from)) ol_mail[["From"]]<- addr_from
+   # if (!is.null(addr_from)) ol_mail[["From"]]<- addr_from
    if (!is.null(addr_to)) ol_mail[["To"]]<- addr_to
    if (!is.null(addr_cc)) ol_mail[["CC"]] <- addr_cc
-   if (!is.null(subject)) ol_mail[["subject"]] <- subject
+   if (!is.null(subject)) ol_mail[["Subject"]] <- subject
 
    if (!is.null(body_html)) {
       ol_mail[["HTMLBody"]] <- body_plain
