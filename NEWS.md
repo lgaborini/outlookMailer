@@ -1,3 +1,8 @@
+# outlookMailer 0.1.2
+
+* Removed `has_COM_method`: not 100% reliable.
+* More README docs.
+
 # outlookMailer 0.1.1
 
 * Bugfix: `Outlook.MailItem` does not have any `From` property (it is called `Sender` instead).

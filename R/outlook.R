@@ -100,8 +100,10 @@ is_outlook <- function(x) {
    if (name_value != 'Outlook') return(FALSE)
 
 
-   has_method <- has_COM_method(x, 'CreateItem')
-   return(has_method)
+   # has_method <- has_COM_method(x, 'CreateItem')
+
+   return(TRUE)
+   # return(has_method)
 }
 
 
@@ -121,7 +123,7 @@ is_mail <- function(x) {
    if (!has_COM_property(x, 'To')) return(FALSE)
    if (!has_COM_property(x, 'CC')) return(FALSE)
    if (!has_COM_property(x, 'Subject')) return(FALSE)
-   if (!has_COM_method(x, 'Display')) return(FALSE)
+   # if (!has_COM_method(x, 'Display')) return(FALSE)
 
    ret <- (x[['Class']] == 43)           # olMailItem
    ret
@@ -136,6 +138,7 @@ is_mail <- function(x) {
 #' @param prop_name a single property name to query, as a character
 #' @return TRUE if x is a COM object with the given property
 #' @export
+#' @importFrom rlang catch_cnd exec
 #' @inheritParams is_COM
 has_COM_property <- function(x, prop_name) {
 
@@ -159,33 +162,5 @@ has_COM_property <- function(x, prop_name) {
 }
 
 
-
-
-#' Check if a COM object has a method
-#'
-#' @param method_name a single method name to query, as a character
-#' @return TRUE if x is a COM object with the given property
-#' @export
-#' @inheritParams is_COM
-has_COM_method <- function(x, method_name) {
-
-   stopifnot(is.character(method_name))
-   stopifnot(length(method_name) == 1)
-
-   if (!is_COM(x)) return(FALSE)
-
-   cnd <- rlang::catch_cnd(`$`(x, method_name))
-
-   # No condition is thrown
-   if (is.null(cnd)) {
-      return(TRUE)
-   }
-
-   if (stringr::str_detect(cnd$message, '^Cannot locate [0-9]+ name\\(s\\)')) {
-      return(FALSE)
-   }
-   # Throw any other condition
-   stop(cnd)
-}
 
 

@@ -108,7 +108,7 @@ create_draft <- function(ol_app,
    # Show the message
    if (show_message){
 
-      stopifnot(has_COM_method(ol_mail, 'Display'))
+      # stopifnot(has_COM_method(ol_mail, 'Display'))
 
       Sys.sleep(0.5)
       ol_mail$Display()
@@ -172,7 +172,7 @@ open_msg <- function(ol_app, path_msg, show_message = TRUE) {
 
    ol_sess <- ol_app[['Session']]
 
-   stopifnot(ol_sess %>% has_COM_method('OpenSharedItem'))
+   # stopifnot(ol_sess %>% has_COM_method('OpenSharedItem'))
 
    ol_mail <- ol_sess$OpenSharedItem(path_msg)
 
@@ -181,7 +181,7 @@ open_msg <- function(ol_app, path_msg, show_message = TRUE) {
    # Show the message
    if (show_message){
 
-      stopifnot(has_COM_method(ol_mail, 'Display'))
+      # stopifnot(has_COM_method(ol_mail, 'Display'))
 
       Sys.sleep(0.5)
 

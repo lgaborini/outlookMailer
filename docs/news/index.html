@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">outlookMailer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -105,12 +105,21 @@
       
     </div>
 
+    <div id="outlookmailer-012" class="section level1">
+<h1 class="page-header">
+<a href="#outlookmailer-012" class="anchor"></a>outlookMailer 0.1.2</h1>
+<ul>
+<li>Removed <code>has_COM_method</code>: not 100% reliable.</li>
+<li>More README docs.</li>
+</ul>
+</div>
     <div id="outlookmailer-011" class="section level1">
 <h1 class="page-header">
 <a href="#outlookmailer-011" class="anchor"></a>outlookMailer 0.1.1</h1>
 <ul>
-<li>Bugfix: apparently <code>Outlook.MailItem</code> does not have any <code>From</code> property.</li>
+<li>Bugfix: <code>Outlook.MailItem</code> does not have any <code>From</code> property (it is called <code>Sender</code> instead).</li>
 <li>Add explicit <code>disconnect_outlook</code> in tests.</li>
+<li>Bugfix: signature is not correctly pasted in HTML e-mails. Do not paste on HTML e-mails for now.</li>
 </ul>
 </div>
     <div id="outlookmailer-01" class="section level1">
@@ -133,6 +142,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#outlookmailer-012">0.1.2</a></li>
         <li><a href="#outlookmailer-011">0.1.1</a></li>
         <li><a href="#outlookmailer-01">0.1</a></li>
         <li><a href="#outlookmailer-001">0.0.1</a></li>

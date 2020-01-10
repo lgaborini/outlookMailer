@@ -6,6 +6,7 @@
 \usage{
 create_draft(
   ol_app,
+  addr_from = NULL,
   addr_to = NULL,
   addr_cc = NULL,
   subject = NULL,
@@ -19,6 +20,8 @@ create_draft(
 \arguments{
 \item{ol_app}{An object that represents an Outlook application instance (class: class `COMIDispatch.`)}
 
+\item{addr_from}{optional fields to fill}
+
 \item{addr_to}{optional fields to fill}
 
 \item{addr_cc}{optional fields to fill}
@@ -27,7 +30,7 @@ create_draft(
 
 \item{attachments}{path to file(s) to attach}
 
-\item{use_signature}{if TRUE, get the signature (if automatically added) from the blank message, than put it back after the message is created.}
+\item{use_signature}{if TRUE, get the HTML signature from the new blank message, than put it back *after the plain text* after the message is created.}
 
 \item{show_message}{if TRUE, show the message for editing after creation}
 

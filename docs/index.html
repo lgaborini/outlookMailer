@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">outlookMailer</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
       </span>
     </div>
 
@@ -82,14 +82,21 @@ It is no longer on CRAN, but can be installed from <a href="https://github.com/o
 <div id="the-package" class="section level3">
 <h3 class="hasAnchor">
 <a href="#the-package" class="anchor"></a>The package</h3>
-<p>You can install the released version of outlookMailer from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"outlookMailer"</span>)</a></code></pre></div>
+<p>The package is not on CRAN, install the developer version from here:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">remotes<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/remotes/man/install_github.html">install_github</a></span>(<span class="st">'lgaborini/outlookMailer'</span>)</a></code></pre></div>
 </div>
+</div>
+<div id="manual" class="section level2">
+<h2 class="hasAnchor">
+<a href="#manual" class="anchor"></a>Manual</h2>
+<p><a href="https://lgaborini.github.io/outlookMailer/">Here</a> (built with <a href="https://pkgdown.r-lib.org/">pkgdown</a>📦)</p>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>The package wraps the COM interface to Microsoft Outlook with user-friendly R functions.</p>
+<p>One retrieves/sets properties with <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code> and <code>]]</code> accessors.<br>
+One calls methods with the <code><a href="https://rdrr.io/r/base/Extract.html">$</a></code> accessor.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(outlookMailer)</a>
 <a class="sourceLine" id="cb3-2" title="2"></a>
 <a class="sourceLine" id="cb3-3" title="3"><span class="co"># Create a connection to Outlook</span></a>
@@ -113,20 +120,58 @@ It is no longer on CRAN, but can be installed from <a href="https://github.com/o
 <a class="sourceLine" id="cb3-21" title="21"></a>
 <a class="sourceLine" id="cb3-22" title="22"><span class="co"># Close and save to drafts</span></a>
 <a class="sourceLine" id="cb3-23" title="23"><span class="kw"><a href="reference/close_draft.html">close_draft</a></span>(msg, <span class="dt">save =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Most functions are pipe-friendly:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="reference/connect_outlook.html">connect_outlook</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="st">   </span><span class="kw"><a href="reference/create_draft.html">create_draft</a></span>(<span class="dt">body_plain =</span> <span class="st">'Test'</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="st">   </span><span class="kw"><a href="reference/close_draft.html">close_draft</a></span>(<span class="dt">save =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="st">   </span><span class="kw">disconnect_outlok</span>()</a></code></pre></div>
 <div id="attachments" class="section level3">
 <h3 class="hasAnchor">
 <a href="#attachments" class="anchor"></a>Attachments</h3>
 <p>Multiple attachments can be supplied as a vector of paths.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">msg &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_draft.html">create_draft</a></span>(con, <span class="dt">attachments =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'foo.txt'</span>, <span class="st">'foo2.txt'</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">msg &lt;-<span class="st"> </span><span class="kw"><a href="reference/create_draft.html">create_draft</a></span>(con, <span class="dt">attachments =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'foo.txt'</span>, <span class="st">'foo2.txt'</span>))</a></code></pre></div>
 </div>
 <div id="messages-saved-as-files" class="section level3">
 <h3 class="hasAnchor">
 <a href="#messages-saved-as-files" class="anchor"></a>Messages saved as files</h3>
-<p>Messages saved as <code>.msg</code> or <code>.eml</code> can be opened:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">con &lt;-<span class="st"> </span><span class="kw"><a href="reference/connect_outlook.html">connect_outlook</a></span>()</a>
-<a class="sourceLine" id="cb5-2" title="2"></a>
-<a class="sourceLine" id="cb5-3" title="3">msg &lt;-<span class="st"> </span><span class="kw"><a href="reference/open_msg.html">open_msg</a></span>(con, <span class="dt">path_msg =</span> <span class="st">'sample.msg'</span>, <span class="dt">show_message =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Messages saved as <code>.msg</code> or <code>.eml</code> can be opened and modified:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">con &lt;-<span class="st"> </span><span class="kw"><a href="reference/connect_outlook.html">connect_outlook</a></span>()</a>
+<a class="sourceLine" id="cb6-2" title="2"></a>
+<a class="sourceLine" id="cb6-3" title="3">msg &lt;-<span class="st"> </span><span class="kw"><a href="reference/open_msg.html">open_msg</a></span>(con, <span class="dt">path_msg =</span> <span class="st">'sample.msg'</span>, <span class="dt">show_message =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
+<div id="com-utilities" class="section level3">
+<h3 class="hasAnchor">
+<a href="#com-utilities" class="anchor"></a>COM utilities</h3>
+<p>The package provides a function check if a COM object has a property:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="reference/has_COM_property.html">has_COM_property</a></span>(con, <span class="st">'Name'</span>)</a>
+<a class="sourceLine" id="cb7-2" title="2">con[[<span class="st">'Name'</span>]]</a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="co"># 'Outlook'</span></a></code></pre></div>
+</div>
+</div>
+<div id="todo" class="section level2">
+<h2 class="hasAnchor">
+<a href="#todo" class="anchor"></a>TODO</h2>
+<ul>
+<li>
+<input type="checkbox" disabled>
+Fix the signature (HTML/plain text conversion)</li>
+<li>
+<input type="checkbox" disabled>
+Save and discard messages</li>
+<li>
+<input type="checkbox" disabled>
+Make it pipe-friendly (e.g. <code>set_from</code>, <code>set_body</code>, …)</li>
+<li>
+<input type="checkbox" disabled>
+Improve robustness to Windows calls</li>
+<li>
+<input type="checkbox" disabled>
+Re-implement <code>has_COM_method</code>
+</li>
+<li>
+<input type="checkbox" disabled>
+Move to S3 objects</li>
+</ul>
 </div>
 </div>
   </div>
