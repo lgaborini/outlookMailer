@@ -76,9 +76,9 @@ Most functions are pipe-friendly:
 
 ``` r
 connect_outlook() %>% 
-   create_draft(body_plain = 'Test') %>% 
-   close_draft(save = TRUE) %>% 
-   disconnect_outloko()
+  create_draft(body_plain = 'Test') %>% 
+  close_draft(save = TRUE) %>%
+  disconnect_outlook()
 ```
 
 ### Attachments

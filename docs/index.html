@@ -122,9 +122,9 @@ One calls methods with the <code><a href="https://rdrr.io/r/base/Extract.html">$
 <a class="sourceLine" id="cb3-23" title="23"><span class="kw"><a href="reference/close_draft.html">close_draft</a></span>(msg, <span class="dt">save =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Most functions are pipe-friendly:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="reference/connect_outlook.html">connect_outlook</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="st">   </span><span class="kw"><a href="reference/create_draft.html">create_draft</a></span>(<span class="dt">body_plain =</span> <span class="st">'Test'</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="st">   </span><span class="kw"><a href="reference/close_draft.html">close_draft</a></span>(<span class="dt">save =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="st">   </span><span class="kw">disconnect_outloko</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw"><a href="reference/create_draft.html">create_draft</a></span>(<span class="dt">body_plain =</span> <span class="st">'Test'</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw"><a href="reference/close_draft.html">close_draft</a></span>(<span class="dt">save =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="st">  </span><span class="kw"><a href="reference/disconnect_outlook.html">disconnect_outlook</a></span>()</a></code></pre></div>
 <div id="attachments" class="section level3">
 <h3 class="hasAnchor">
 <a href="#attachments" class="anchor"></a>Attachments</h3>

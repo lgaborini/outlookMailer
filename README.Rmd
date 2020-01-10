@@ -82,12 +82,10 @@ Most functions are pipe-friendly:
 
 ```{r, eval=FALSE}
 connect_outlook() %>% 
-   create_draft(body_plain = 'Test') %>% 
-   close_draft(save = TRUE) %>% 
-   disconnect_outloko()
-```
-
-
+  create_draft(body_plain = 'Test') %>% 
+  close_draft(save = TRUE) %>%
+  disconnect_outlook()
+````
 ### Attachments
 
 Multiple attachments can be supplied as a vector of paths.
