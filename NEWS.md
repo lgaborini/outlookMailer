@@ -1,3 +1,7 @@
+# outlookMailer 0.1.3
+
+* `open_msg` no longer lock files, it copies the message to temporary directory. Also, it works on local drives.
+
 # outlookMailer 0.1.2
 
 * Removed `has_COM_method`: not 100% reliable.

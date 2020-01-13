@@ -17,7 +17,8 @@ open_msg(ol_app, path_msg, show_message = TRUE)
 a COM object that binds to an e-mail window (`'Outlook.MailItem'`)
 }
 \description{
-Open a .msg in the current Outlook session
+Open a .msg in the current Outlook session.
+First, copies it to a temporary location, to avoid locking it.
 }
 \examples{
 \dontrun{

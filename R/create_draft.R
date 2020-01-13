@@ -150,10 +150,14 @@ close_draft <- function(ol_mail, save = FALSE) {
 
 #' Open a .msg in the current Outlook session
 #'
+#' Open a .msg in the current Outlook session.
+#' First, copies it to a temporary location, to avoid locking it.
+#'
 #' @param path_msg a path to a '.msg' or '.eml' file (not checked for format)
 #' @return a COM object that binds to an e-mail window (`'Outlook.MailItem'`)
 #' @export
 #' @inheritParams create_draft
+#' @importFrom rlang abort
 #' @examples
 #' \dontrun{
 #'
@@ -170,11 +174,25 @@ open_msg <- function(ol_app, path_msg, show_message = TRUE) {
 
    path_msg <- normalizePath(path_msg, mustWork = TRUE)
 
-   ol_sess <- ol_app[['Session']]
+   # In case the .msg is on a shared drive
+   #
+   # ol_sess <- ol_app[['Session']]
 
    # stopifnot(ol_sess %>% has_COM_method('OpenSharedItem'))
 
-   ol_mail <- ol_sess$OpenSharedItem(path_msg)
+   # Copy file to tempfile() to avoid file lock (Windows)
+   path_msg_tmp <- tempfile()
+   ret <- file.copy(path_msg, path_msg_tmp, overwrite = TRUE)
+   if (!ret) {
+      rlang::abort('failed copying .msg to temp file')
+   }
+
+   # In case the .msg is on a shared drive
+   #
+   # ol_mail <- ol_sess$OpenSharedItem(path_msg_tmp)
+
+   # else open locally
+   ol_mail <- ol_app$CreateItemFromTemplate(path_msg_tmp)
 
    stopifnot(is_mail(ol_mail))
 
