@@ -1,6 +1,6 @@
 Package: outlookMailer
 Title: Interact with Microsoft Outlook from R
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: 
     person(given = "Lorenzo",
            family = "Gaborini",
@@ -14,5 +14,8 @@ RoxygenNote: 7.0.2
 Imports: 
     magrittr,
     RDCOMClient
+Remotes:
+    github::omegahat/RDCOMClient,
+    github::lgaborini/RDCOMClient
 Suggests: 
     testthat (>= 2.1.0)
